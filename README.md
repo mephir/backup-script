@@ -1,2 +1,5 @@
-# backup-script
-Script for backuping database and sending it to s3 via s3command
+# backup-scripts
+Script for backups
+
+* mysql-backup.sh - create backup of mysql database (require mysqldump, s3cmd for sending to s3 and tar for compressing output file)
+
