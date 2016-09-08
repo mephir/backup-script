@@ -82,17 +82,22 @@ fi
 
 echo "Creating database backup ..."
 mysqldump $options $database > "$tmpdir/$filename.sql"
+echo "Database dumped"
 
 if [ $compress == true ]; then
     echo "Compressing database backup ..."
     tar -C $tmpdir/ -cJf $tmpdir/$filename.tar.xz $filename.sql 2>&1
     rm -rf $tmpdir/$filename.sql
     ext="tar.xz"
+    echo "Compressed output file"
 fi
+
+outputdir=$(echo $outputdir | sed 's#[^/]$#\0/#')
 
 if [ $sss == true ]; then
     echo "Sending file $filename.$ext to $outputdir"
     s3cmd put $tmpdir/$filename.$ext $outputdir
+    echo "File sent"
 else
     mv $tmpdir/$filename.$ext $outputdir
 fi
