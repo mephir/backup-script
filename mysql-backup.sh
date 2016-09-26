@@ -4,7 +4,7 @@ set -e
 
 command -v mysqldump >/dev/null 2>&1 || { echo >&2 "I require mysqldump but it's not installed ;("; exit 1; }
 
-usage="Usage `basename $0` [--help] [-c -o] database -- Dump database
+usage="Usage `basename $0` [--help] [-c -o -h -P -u -p -f -s] database -- Dump database
 
 where:
     -c    compress output file (.tar.xz)
