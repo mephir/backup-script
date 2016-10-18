@@ -73,8 +73,7 @@ do
 done
 
 if [ -z "$filename" ]; then
-    _now=$(date +"%y%m%d%H%M%S")
-    filename="${_now}_salesforce"
+    filename=$(date +"%y%m%d%H%M%S")
 fi
 
 output=$outputdir
@@ -98,4 +97,10 @@ IFS=" " read -ra ARGSS <<< "$files"
 for i in "${ARGSS[@]}"; do
     download $serverUrl $orgId $sessionId $i $output
 done
+
+#if [ $sss == true ]; then
+#    s3cmd put $tmpdir/$filename.$ext $outputdir
+#    echo "File sent"
+#fi
+
 
