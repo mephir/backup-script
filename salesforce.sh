@@ -33,7 +33,7 @@ function download_index()
 function download()
 {
     filename=$(echo $4 | grep -oPm1 "(?<=fileName=)[^&]+")
-    curl -o "$5/$filename" -H "Cookie: sid=$3; oid=$2" $1/$4
+    wget --continue --header "Cookie: sid=$3; oid=$2" $1/$4 -O "$5/$filename"
 }
 
 usage="Usage `basename $0` [--help] [-o -f -s -u -t] -- Download and send to s3 salesforce organization backup
