@@ -40,7 +40,7 @@ usage="Usage `basename $0` [--help] [-o -f -s -u -t] -- Download and send to s3 
 
 where:
     -o	    path to output directory/s3 (default: `pwd`)
-    -f      output filename format (default: current time and name, avaiable when -c)
+    -f      output filename format (default: current time and name, available when -c)
     -u      salesforce username
     -t      salesforce token (concatanated password+security token)
     -s      s3cmd options (default: none)
@@ -98,9 +98,9 @@ for i in "${ARGSS[@]}"; do
     download $serverUrl $orgId $sessionId $i $output
 done
 
-#if [ $sss == true ]; then
-#    s3cmd put $tmpdir/$filename.$ext $outputdir
-#    echo "File sent"
-#fi
+if [ $sss == true ]; then
+    s3cmd put $output/* $outputdir
+    echo "File sent"
+fi
 
 
